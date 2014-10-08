@@ -871,7 +871,7 @@ extension Request: DebugPrintable {
             }
         }
 
-        for (field, value) in self.request.allHTTPHeaderFields! {
+        for (field, value) in self.request.allHTTPHeaderFields ?? [:] {
             switch field {
             case "Cookie":
                 continue
