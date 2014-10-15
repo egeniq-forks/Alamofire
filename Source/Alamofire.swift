@@ -1261,7 +1261,10 @@ extension Request: DebugPrintable {
         }
         
         if let HTTPBody = request.HTTPBody {
-            components.append("-d \"\(NSString(data: HTTPBody, encoding: NSUTF8StringEncoding))\"")
+            if var data = NSString(data: HTTPBody, encoding: NSUTF8StringEncoding) {
+                data = data.stringByReplacingOccurrencesOfString("\"", withString: "\\\"")
+                components.append("-d \"\(data)\"")
+            }
         }
 
         components.append("\"\(URL.absoluteString!)\"")
