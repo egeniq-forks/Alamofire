@@ -1263,7 +1263,7 @@ extension Request: DebugPrintable {
             }
         }
 
-        for (field, value) in request.allHTTPHeaderFields! {
+        for (field, value) in request.allHTTPHeaderFields ?? [:] {
             switch field {
             case "Cookie":
                 continue
